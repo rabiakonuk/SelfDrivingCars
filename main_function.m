@@ -11,12 +11,12 @@ train_y = y(training);
     
 test_X = X(test,:); % form the testing data
 test_y = y(test);    
-%% 1.a
+%% 1a
 scatter(X(:,1), X(:,2),2,y);
 xlabel('X1');
 ylabel('X2');
 title('Scatterplot between X1 and X2 colored by class');
-%% 1.b
+%% 1b
 gamma = 2;
 model = fitcsvm(train_X, train_y, 'KernelFunction','RBF', 'KernelScale', 1/sqrt(gamma)); 
 
@@ -32,7 +32,7 @@ clc
 sprintf('Train accuracy: %0.4f', train_acc)
 sprintf('Test accuracy: %0.4f', test_acc)
 
-%% 1.c
+%% 1c
 gamma = 1;
 model = fitcsvm(train_X, train_y, 'KernelFunction','RBF', 'KernelScale', 1/sqrt(gamma)); 
 
@@ -48,7 +48,7 @@ clc
 sprintf('Train accuracy: %0.4f', train_acc)
 sprintf('Test accuracy: %0.4f', test_acc)
 
-%% 1.d
+%% 1d
 %C=1 as default
 gamma = 10;
 model = fitcsvm(train_X, train_y, 'KernelFunction','RBF', 'KernelScale', 1/sqrt(gamma)); 
@@ -66,7 +66,7 @@ sprintf('Train accuracy: %0.4f', train_acc)
 sprintf('Test accuracy: %0.4f', test_acc)
 
 
-%% 1.e
+%% 1e
 clc
 C=0.1;
 gamma=1;
@@ -86,7 +86,7 @@ while C<=1000
 end
 
 
-%% 1.f
+%% 1f
 
 model = fitcsvm(train_X, train_y, 'KernelFunction', 'polynomial', 'PolynomialOrder', 3); 
 
@@ -102,9 +102,7 @@ clc
 sprintf('Train accuracy: %0.4f', train_acc)
 sprintf('Test accuracy: %0.4f', test_acc)
 
-
-
-%% 2.a
+%% 2a
 cvp_val = cvpartition(train_y, 'Holdout', 0.2);
 training_val = cvp_val.training;
 validation = cvp_val.test;
@@ -150,20 +148,20 @@ sprintf('Best Validation accuracy: %0.4f', best_val_acc)
 sprintf('Best Test accuracy: %0.4f', best_test_acc)
 
 
-%% 2.b
+%% 2b
 svm_plot_classes(train_X_val,train_y_val,best_model); 
 svm_plot_classes(val_X,val_y,best_model);
 svm_plot_classes(test_X,test_y,best_model);
 
 
-%% 2.c
+%% 2c
 clc
 %-----------FIRST EXECUTE SECTION WITH THE FUNCTION BELOW-------------
 calculateF1Score(train_y_val, train_pred_y)
 calculateF1Score(val_y, val_pred_y)
 calculateF1Score(test_y, test_pred_y)
 
-%% 3.a
+%% 3a
 clc
 model = fitcsvm(train_X, train_y, 'KernelFunction', 'rbf', 'KernelScale', ...
     5, 'BoxConstraint', 5);
@@ -217,7 +215,7 @@ mean(AUC_all)
 figure; boxplot(AUC_all)
 title('Random Forest - AUC')
 
-%% 3.c
+%% 3c
 %%
 function f1Score = calculateF1Score(y_true, y_pred)
     % Calculate True Positives (TP)
